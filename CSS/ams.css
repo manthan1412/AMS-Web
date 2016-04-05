@@ -1,0 +1,14 @@
+* {
+	 box-sizing: border-box;
+}
+body{
+	display: block;
+	top: 0px;
+	left: 0px;
+}
+
+.form{
+	display: block;
+	position: absolute;
+	margin-top: 85px;
+}
