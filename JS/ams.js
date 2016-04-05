@@ -22,6 +22,9 @@ $(function () {
 		// 	name: data,
 		// 	dataType: 'json'
 		// });
-		$.post("http://localhost:5000/test", { "name" : data });
+		$.post("http://localhost:5000/test", { "name" : data })
+			.done(function (data) {
+				alert("Data sent : " + data);
+			});
 	});
 });
