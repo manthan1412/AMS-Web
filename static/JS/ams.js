@@ -25,6 +25,22 @@ $(function () {
 		$.ajax({
 		  "async": true,
 		  "crossDomain": true,
+		  "url": root + "/login",
+		  "method": "POST",
+		  headers: {
+		    "Authorization": "Basic " + btoa("c" + ":" + "dgfsg")
+		  },
+		  "processData": false,
+		  "data": ""
+		}).then(function (data) {
+			alert(data);
+		});
+
+		
+
+		$.ajax({
+		  "async": true,
+		  "crossDomain": true,
 		  "url": root + "/test",
 		  "method": "POST",
 		  "headers": {
@@ -43,5 +59,7 @@ $(function () {
 		  	
 		  	// console.log(response);
 		});
+
+
 	});
 });

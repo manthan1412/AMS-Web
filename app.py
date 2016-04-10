@@ -8,7 +8,7 @@ def isLogin():
 
 @app.route('/')
 def Home():
-	return render_template('index.html',islogin=isLogin())
+	return render_template('index2.html',islogin=isLogin())
 
 @app.route('/login')
 def Login():
