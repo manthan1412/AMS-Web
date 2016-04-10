@@ -8,11 +8,28 @@ def isLogin():
 
 @app.route('/')
 def Home():
-	return render_template('index2.html',islogin=isLogin())
+	return render_template('index.html',islogin=isLogin(), login="Student")
 
-@app.route('/login')
-def Login():
-	pass
+@app.route('/login/master')
+def MasterLogin():
+	if islogin() :
+		pass
+	else:
+		return render_template('index.html',islogin=False, login="Master")
+
+@app.route('/login/student')
+def StudentLogin():
+	if islogin() :
+		pass
+	else:
+		return render_template('index.html',islogin=False, login="Student")
+
+@app.route('/login/teacher')
+def TeacherLogin():
+	if islogin() :
+		pass
+	else:
+		return render_template('index.html',islogin=False, login="Teacher")
 
 @app.route('/logout')
 def Logout():
