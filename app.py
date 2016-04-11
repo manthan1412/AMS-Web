@@ -6,27 +6,34 @@ app.secret_key = 'F12Zr47j\3yX R~X@H!jmM]Lwf/,?KT'
 def isLogin():
 	return False
 
+# @app.errorhandler(InvalidAPIUsage)
+# def handle_invalid_usage(error):
+#     response = jsonify(error.to_dict())
+#     response.status_code = error.status_code
+#     return response
+
 @app.route('/')
 def Home():
 	return render_template('index.html',islogin=isLogin(), login="Student")
 
-@app.route('/login/master')
-def MasterLogin():
-	if islogin() :
-		pass
-	else:
-		return render_template('index.html',islogin=False, login="Master")
-
+@app.route('/login')
 @app.route('/login/student')
-def StudentLogin():
-	if islogin() :
+def MasterLogin():
+	if isLogin() :
 		pass
 	else:
 		return render_template('index.html',islogin=False, login="Student")
 
+@app.route('/login/master')
+def StudentLogin():
+	if isLogin() :
+		pass
+	else:
+		return render_template('index.html',islogin=False, login="Master")
+
 @app.route('/login/teacher')
 def TeacherLogin():
-	if islogin() :
+	if isLogin() :
 		pass
 	else:
 		return render_template('index.html',islogin=False, login="Teacher")

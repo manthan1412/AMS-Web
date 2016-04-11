@@ -11,6 +11,7 @@ html, body{
 	margin: 0px;
 	padding: 0px;
 	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
 }
 
 body{
@@ -79,17 +80,26 @@ header{
 	width: 100%;
 	height: auto;
 	padding: 10px;
+
 }
 
 #login-form{
 	align-self: center;
 	background-color: white;
+	position: relative;
 	padding: 15px;
 	margin-top:50px;
 	width: 95%;
+	border-radius: 5px;
 	-webkit-box-shadow: 0 10px 6px -6px #777;
        -moz-box-shadow: 0 10px 6px -6px #777;
             box-shadow: 0 10px 6px -6px #777;
+}
+
+@-moz-document url-prefix() {
+    #login-form {
+        margin-top: 100px;
+    }
 }
 
 #heading{
@@ -112,6 +122,82 @@ header{
 	width: 70px;
 	height: 70px;
 	border-radius: 50%;
+	-webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 1);
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 1);
+}
+
+#field{
+	display: table;
+	margin: 0 auto;
+	margin-top: 25px;
+}
+
+.padding{
+	position: relative;
+	padding: 10px;
+	padding-left: 35px;
+	border: 1px solid #bdbdbd;
+	border-radius: 3px;
+	width: 225px;
+	color: #3f3f3f;
+	background-color: #ededed;
+}
+
+.border:hover{
+	border:1px solid #40A9DF;
+	border-radius: 3px;
+	box-shadow: 0 0 1em #40A9DF;
+	 -webkit-box-shadow: 0 0 1em #40A9DF;
+	 -o-box-shadow: 0 0 1em #40A9DF;
+	 -moz-box-shadow: 0 0 1em #40A9DF;
+}
+
+input::-webkit-input-placeholder {
+   color: #3f3f3f;
+}
+
+input:-moz-placeholder {
+   color: #3f3f3f;  
+}
+
+input::-moz-placeholder { 
+   color: #3f3f3f;  
+}
+
+input:-ms-input-placeholder {  
+   color: #3f3f3f;  
+}
+
+.image{
+	position: relative;
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+	margin-left: -215px;
+}
+
+.checkbox{
+	position: relative;
+	font-size: 0.8em;
+	margin-left: 0px;
+}
+
+.button{
+	padding: 10px 20px 10px 20px;
+	background-color: #003c5d;
+	border: 1px solid #003c5d;
+	border-radius: 3px;
+	color: white;
+}
+
+.button:hover{
+	cursor: pointer;
+}
+
+.login{
+	position: relative;
+	margin-left: 35px;
 }
 
 @media only screen and (min-width: 600px){
@@ -168,18 +254,50 @@ header{
 		background-color: #191919;
 	}
 
+	#heading{
+		padding-bottom: 15px;
+	}
+
 	#login-form{
 		margin-top:5%;
-		width: 50%;
+		width: 400px;
+	}
+	.padding{
+		width: 300px;
+	}
+	.image{
+		width: 16px;
+		height: 16px;
+		margin-left: -290px;
+	}
+	.login{
+		margin-left: 110px;
 	}
 }
 
 @media only screen and (min-width: 768px){	     
+	#login-form{
+		width: 450px;
+	}
 	#for-logo{
 		top:-60px;
 	}	
 	.round-image{
 		width: 100px;
 		height: 100px;
+	}
+	.padding{
+		font-size: 1.2em;
+		width: 325px;
+		padding-left: 45px;
+
+	}
+	.image{
+		width: 20px;
+		height: 20px;
+		margin-left: -310px;
+	}
+	.login{
+		margin-left: 135px;
 	}
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Welocme to AMS</title>
+	<title>Welcome to AMS</title>
 	<link rel="icon" href="{{url_for('static',filename='Images/favicon.ico')}}">
 	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='CSS/ams.css')}}">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet' type='text/css'>
@@ -11,7 +11,8 @@
 
 		@media only screen and (min-width: 600px){
 		#image-container{
-			background-image: url('static/Images/class-raising-hands.jpg');
+			background-image: url('/static/Images/class-raising-hands.jpg');
+			/*background-image: url({{url_for('static',filename='Images/class-raising-hands.jpg')}});*/
 			width: 100%;
 			height: 100%;
 			z-index: -1;
@@ -55,7 +56,26 @@
 					<img src="{{url_for('static',filename='Images/logo.png')}}" class="round-image" alt="AMS Logo" title="AMS Logo">
 				</div>
 				<span id="heading">{{login}} Login</span>
+
+				<p id="field" class="border">
+					
+					<input type="text" id="username" name="username" placeholder="USERNAME" class="padding" />
+					<img src="{{url_for('static',filename='Images/user.png')}}" class="image">
+				</p>
+
+				<p id="field" class="border">
+					<input type="password" id="password" name="password" value="password" class="padding" />
+					<img src="{{url_for('static',filename='Images/security.png')}}" class="image">
+				</p>
+
+				<p id="field">
+					<label class="checkbox"><input type="checkbox" name="checkbox">Remember me</label>
+					<input type="submit" onclick="login()" value="LOGIN" class="button login" >
+				</p>
+
+				<p id="field"></p>
 			</div>
 		</div>
+		<div>Icons made by <a href="http://www.flaticon.com/authors/vectors-market" title="Vectors Market">Vectors Market</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 </body>
 </html>
