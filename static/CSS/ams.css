@@ -20,7 +20,7 @@ body{
 	left: 0px;
 	background-color: #e4e4e4;
 }
-
+/*//003c5d*/
 header{
 	display: inline-block;
 	float: top;
@@ -92,14 +92,28 @@ header{
 	width: 95%;
 	border-radius: 5px;
 	-webkit-box-shadow: 0 10px 6px -6px #777;
-       -moz-box-shadow: 0 10px 6px -6px #777;
-            box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
+    -webkit-animation: animate 0.5s;
+    -webkit-animation-delay: 0s;
+    animation: animate 0.5s;
+    animation-delay: 0s;
+}
+
+@-webkit-keyframes animate{
+	from {margin-top: 70px;}
+	to {margin-top: 50px;}
+}
+
+@keyframes animate{
+	from {margin-top: 70px;}
+	to {margin-top: 50px;}
 }
 
 @-moz-document url-prefix() {
-    #login-form {
-        margin-top: 100px;
-    }
+	#container{
+		margin-top: 80px;
+	}
 }
 
 #heading{
@@ -273,6 +287,15 @@ input:-ms-input-placeholder {
 	.login{
 		margin-left: 110px;
 	}
+	@-webkit-keyframes animate{
+		from {margin-top: 60px;}
+		to {margin-top: 38px;}
+	}
+
+	@keyframes animate{
+		from {margin-top: 60px;}
+		to {margin-top: 38px;}
+	}
 }
 
 @media only screen and (min-width: 768px){	     
@@ -299,5 +322,25 @@ input:-ms-input-placeholder {
 	}
 	.login{
 		margin-left: 135px;
+	}
+	@-webkit-keyframes animate{
+		from {margin-top: 90px;}
+		to {margin-top: 65px;}
+	}
+
+	@keyframes animate{
+		from {margin-top: 90px;}
+		to {margin-top: 65px;}
+	}
+	@-moz-document url-prefix() {
+		@-webkit-keyframes animate{
+			from {margin-top: 25px;}
+			to {margin-top: 0px;}
+		}
+
+		@keyframes animate{
+			from {margin-top: 25px;}
+			to {margin-top: 0px;}
+		}
 	}
 }

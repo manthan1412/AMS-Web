@@ -1,10 +1,44 @@
 $(function () {
+
+	var change = 1;
+	var root = 'https://ams1412.herokuapp.com';
+	root = "http://localhost:8080"
+
+	if(change){
+		$("input[type='password']").on("click" , function () {
+			$(this).val('');
+			change = 0;
+			console.log(type);
+		});
+	}
+
+	$('#login').on("click", function (event) {
+		event.preventDefault();
+		var username = $('#username').val();
+		var password = $('#password').val();
+		console.log(username);
+		console.log(password);
+		$.ajax({
+			"async" : true,
+			"crossDomain" : true,
+			"url" : root + "/login/" + type.toLowerCase(),
+			"method" : "POST",
+			headers: {
+			    "Authorization": "Basic " + btoa(username + ":" + password)
+			},
+			"processData": false,
+			"data": ""
+		}).done(function (data) {
+			alert(data.message);
+		});
+	});
+
 	$('#submit').click(function () {
 		var data = new Object();
 		data.name = $('#name').val();
 		var jsonData = JSON.stringify(data);
 		console.log(jsonData);
-		var root = 'https://ams1412.herokuapp.com';
+		
 
 		$.ajax({
 		  "async": true,
