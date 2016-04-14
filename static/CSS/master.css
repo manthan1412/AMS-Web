@@ -1,0 +1,126 @@
+.user{
+	position: relative;
+}
+
+.user:before {
+    content: "";
+    position: absolute;
+    right: -7px;
+    top: 32px;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid white;
+}
+
+.user:after {
+    content: "";
+    position: absolute;
+    right: -7px;
+    top: 30px;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid #003c5d;
+
+}
+
+.user:hover{
+	cursor: pointer;
+	background-color: #003c5d !important;
+}
+
+#drop-down-menu{
+    z-index:10;
+	position: absolute;
+	padding: 0px 0px 0px 0px;
+	right: -7px;
+	background-color: #191919;
+}
+
+.hide-menu{
+	display: none;
+}
+
+a{
+	color: white;
+}
+
+#menu-item{
+	line-height: 55px;
+	list-style: none;
+	padding: 0px 25px 0px 25px;
+}
+
+#menu-item:hover{
+	background-color:#3f3f3f;
+}
+
+.add-image{
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.add{
+    width: 48px;
+    height: 48px;
+}
+
+#main-container{
+    position: relative;
+    width: 95%;
+    height: auto;
+    margin: 0 auto;
+    top:20px;
+    background-color: white;
+    padding: 20px;
+}
+
+#data{
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+table{
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+th ,td{
+    padding: 10px;
+    border: 0.5px solid #191919;
+    
+}
+
+.no-border{
+    border:0px;
+}
+
+.head-background{
+    background-color: #003c5d;
+    color: white;
+}
+
+.delete{
+    background-color: #cc0000;
+    border-color: #cc0000;
+}
+
+.font{
+    font-size: 0.8em;
+}
+
+@media only screen and (min-width: 600px){
+    .add{
+        width: 64px;
+        height: 64px;
+    }
+}

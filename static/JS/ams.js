@@ -1,35 +1,71 @@
 $(function () {
-
-	var change = 1;
+	$('body').css('display', 'none');
+    $("body").fadeIn("slow");
 	var root = 'https://ams1412.herokuapp.com';
-	root = "http://localhost:8080"
+	root = "http://localhost:8080";
+	var u = Cookies.get("username"),
+		p = Cookies.get("password"),
+		t = Cookies.get("role");
 
-	if(change){
-		$("input[type='password']").on("click" , function () {
-			$(this).val('');
-			change = 0;
-			console.log(type);
-		});
-	}
+	// if(u != undefined && p != undefined && t!= undefined){
+	// 	$.ajax({
+	// 		"async" : true,
+	// 		"crossDomain" : true,
+	// 		"url" : root + "/login/" + t.toLowerCase(),
+	// 		"method" : "GET",
+	// 		headers: {
+	// 		    "Authorization": "Basic " + btoa(u + ":" + p)
+	// 		},
+	// 		"processData": false,
+	// 		"data": "",
+	// 		"timeout" : 8000,
+	// 		success: function (data, textStatus, xhr) {
+	// 			if(data.status == 200){
+	// 				window.location.replace("/setcookie");
+	// 			}
+	// 		}
+	// 	});
+	// }
+
+	$("input[type='password']").on("click" , function () {
+		$(this).select();
+		console.log(role);
+	});
+	// }
 
 	$('#login').on("click", function (event) {
 		event.preventDefault();
+		$('#invalid-username').removeClass("show-error");
+		$('#wrong-password').removeClass("show-error");
 		var username = $('#username').val();
 		var password = $('#password').val();
-		console.log(username);
-		console.log(password);
+		// var pwd = $.md5(password, 'ams3393');
 		$.ajax({
 			"async" : true,
 			"crossDomain" : true,
-			"url" : root + "/login/" + type.toLowerCase(),
-			"method" : "POST",
+			"url" : root + "/login/" + role.toLowerCase(),
+			"method" : "GET",
 			headers: {
 			    "Authorization": "Basic " + btoa(username + ":" + password)
 			},
 			"processData": false,
-			"data": ""
-		}).done(function (data) {
-			alert(data.message);
+			"data": "",
+			"timeout" : 8000,
+			success: function (data, textStatus, xhr) {
+				if(data.status == 200){
+					Cookies.set("username", username, {expires : 7});
+					Cookies.set("role", role.toLowerCase(), {expires : 7});
+					Cookies.set("password",password , {expires: 7});
+					Cookies.set("id",data.id, {expires: 7});
+					window.location.replace("/setcookie");
+				}
+				else if(data.status == 404){
+					if(data.message == "Invalid username")
+						$('#invalid-username').addClass("show-error");
+					else if(data.message == "Wrong password")
+						$('#wrong-password').addClass("show-error");
+				}
+			}
 		});
 	});
 

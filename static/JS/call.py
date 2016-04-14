@@ -1,13 +1,13 @@
 import requests
-
-url = "https://ams1412.herokuapp.com/test"
-
+import base64
+import json
+url = "https://ams1412.herokuapp.com/login/"
+url = "http://localhost:8080/login/"
+username = "kb"
+password = "xyz"
+types = "Student"
 payload = ""
-headers = {
-    'content-type': "application/json",
-    'cache-control': "no-cache"
-    }
-
-response = requests.request("POST", url, data=payload, headers=headers)
-
-print(response.text)
+response = requests.request("GET", url + types.lower(),auth=(username, password), data=payload, timeout=(3,10))
+data = response.json()
+print data['message']
+# print data["name"]

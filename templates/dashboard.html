@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Master page</title>
+	<link rel="icon" href="{{url_for('static',filename='Images/favicon.ico')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='CSS/ams.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='CSS/master.css')}}">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet' type='text/css'>
+	<script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='JS/js-cookie.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='JS/master.js')}}"></script>
+</head>
+<body>
+	<header>
+			<div id="menu">
+				<img src="{{url_for('static',filename='Images/three-1.png')}}" width="24" height="24">
+			</div>
+
+			<a href="{{url_for('Home')}}">
+				<div id="logo">
+					<img src="{{url_for('static',filename='Images/logo.png')}}" width="56" height="56"> 
+				</div>
+				<span id="logo_name" >AMS</span>
+			</a>
+
+			<ul id="inline-menu">
+				<a href="{{url_for('Teachers')}}"><li id="inline-menu-item">Teachers</li></a>
+				<a href="{{url_for('Students')}}"><li id="inline-menu-item">Students</li></a>
+				<a href="{{url_for('Contactus')}}"><li id="inline-menu-item">Contact us</li></a>
+				<li id="inline-menu-item" class='user'>Settings
+					<ul id="drop-down-menu" class="hide-menu">
+						<a href="{{url_for('Profile')}}"><li id="menu-item">Profile</li></a>
+						<a href="{{url_for('Logout')}}"><li id="menu-item">Logout</li></a>
+					</ul>
+				</li>
+			</ul>
+
+		</header>
+
+		<div class="add-image">
+			<!-- <img src="{{url_for('static',filename='Images/add.svg')}}" width="64" height="64" class="circle"> -->
+			<!-- <img src="{{url_for('static',filename='Images/bn.png')}}" width="64" height="64" class="circle"> -->
+			<img src="{{url_for('static',filename='Images/asd.png')}}" width="64" height="64" class="round-image add">
+			<!-- <img src="{{url_for('static',filename='Images/bn.png')}}" class="circle"> -->
+			<!-- <img src="{{url_for('static',filename='Images/vb.png')}}"  class="circle"> -->
+		</div>
+
+		<div id="main-container">
+			<div id="data">
+				<table class="table">
+					<tr class="head-background">
+						<th>No</th>
+						<th>Username</th>
+						<th>Name</th>
+						<th>Lastname</th>
+						<!-- <th> </th> -->
+					</tr>
+				</table>
+			</div>
+		</div>
+</body>
+</html>

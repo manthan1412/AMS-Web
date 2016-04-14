@@ -214,6 +214,35 @@ input:-ms-input-placeholder {
 	margin-left: 35px;
 }
 
+.error{
+	z-index: -10;
+	position: absolute;
+	margin-left: -25px;
+	margin-top: 40px;
+	padding: 5px;
+	background-color: #cc0000;
+	border-radius: 3px;
+	font-size: 0.8em;
+	color: white;
+}
+
+.error:after{
+	content: '';
+	position: absolute;
+	bottom: 100%;
+	left: 10px;
+	width: 0;
+	height: 0;
+	border-bottom: solid 7px #cc0000;
+	border-left: solid 7px transparent;
+	border-right: solid 7px transparent;
+
+}
+
+.show-error{
+	z-index: 3;
+}
+
 @media only screen and (min-width: 600px){
 	
 	header{
@@ -245,7 +274,7 @@ input:-ms-input-placeholder {
 		margin: 0px;
 		height: 65px;
 		line-height: 65px;
-		right: 10px;
+		right: 40px;
 		font-size: 1.35em;
 		list-style: none;
 		vertical-align: middle;
@@ -315,10 +344,17 @@ input:-ms-input-placeholder {
 		padding-left: 45px;
 
 	}
+
+	#field{
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
+
 	.image{
 		width: 20px;
 		height: 20px;
 		margin-left: -310px;
+		margin-top: -5px;
 	}
 	.login{
 		margin-left: 135px;
@@ -343,4 +379,11 @@ input:-ms-input-placeholder {
 			to {margin-top: 0px;}
 		}
 	}
+
+	.error{
+		padding: 10px;
+		margin-left: -27px;
+		font-size: 0.9em;
+	}
+
 }

@@ -2,9 +2,24 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 
 app = Flask(__name__)
 app.secret_key = 'F12Zr47j\3yX R~X@H!jmM]Lwf/,?KT'
+url = "https://ams1412.herokuapp.com"
+url = "http://localhost:8080"
 
 def isLogin():
-	return False
+	try:	
+		# if 'username' in session:
+		# 	if 'password' in session:
+		# 		payload = ""
+		# 		response = requests.request("GET", url + "/login/" +session["role"].lower(), auth=(session["username"], session["password"]), data=payload, timeout=(5,10))
+		# 		data = response.json()
+		# 		print data
+		# 		if data['message'] == "Successfully logged in":
+		# 			return session['role']
+		if 'role' in session:
+	 		return session['role']
+		return None
+	except:	
+		return None
 
 # @app.errorhandler(InvalidAPIUsage)
 # def handle_invalid_usage(error):
@@ -12,15 +27,48 @@ def isLogin():
 #     response.status_code = error.status_code
 #     return response
 
+@app.route("/setcookie")
+def SetCookie():
+	session["username"] = request.cookies.get('username')
+	session["password"] = request.cookies.get('password')
+	session["role"] = request.cookies.get('role')
+	session["id"] = request.cookies.get('id')
+	if session["role"] == "master":
+		return redirect(url_for('Master'))
+	else:
+		return redirect(url_for('Moodle'))
+
+@app.route('/cookie')
+def Co():
+	username = request.cookies.get('username')
+	return username
+
 @app.route('/')
 def Home():
-	return render_template('index.html',islogin=isLogin(), login="Student")
+	l = isLogin()
+	if l is None:
+		return render_template('index.html',islogin=False, login="Student")
+	elif l == "master":
+		return redirect(url_for('Master'))
+	else:
+		return redirect(url_for('Moodle'))
+
+
+@app.route('/master')
+def Master():
+	try:
+		if session["role"] == "master":
+			return render_template('dashboard.html', student=False, teacher=False)
+		else:
+			return redirect(url_for('Home'))
+	except:
+		return redirect(url_for('Home'))
 
 @app.route('/login')
 @app.route('/login/student')
 def MasterLogin():
 	if isLogin() :
-		pass
+		return redirect(url_for('Moodle'))
 	else:
 		return render_template('index.html',islogin=False, login="Student")
 
@@ -40,7 +88,11 @@ def TeacherLogin():
 
 @app.route('/logout')
 def Logout():
-	pass
+	session.pop('username', None)
+	session.pop('password', None)
+	session.pop('role', None)
+	session.pop('id', None)
+	return render_template('logout.html');
 
 @app.route('/contactus')
 def Contactus():
@@ -52,16 +104,32 @@ def Masters():
 
 @app.route('/students')
 def Students():
-	pass
+	try:
+		if session['role'] == 'master':
+			return render_template('dashboard.html', student=True, teacher=False)
+		else:
+			return redirect(url_for('Home'))
+	except:
+		return redirect(url_for('Home'))
+
 
 @app.route('/teachers')
 def Teachers():
-	pass
+	try:
+		if session['role'] == 'master':
+			return render_template('dashboard.html', student=False, teacher=True)
+		else:
+			return redirect(url_for('Home'))
+	except:
+		return redirect(url_for('Home'))
+
+@app.route('/profile')
+def Profile():
+	return render_template('profie.html')
 
 @app.route('/add/master')
 def AddMasters():
 	pass
-
 @app.route('/add/students')
 def AddStudents():
 	pass
@@ -133,7 +201,7 @@ def DeleteTimetable():
 @app.route('/moodle')
 @app.route('/moodle/home')
 def Moodle():
-	pass
+	return render_template('moodle.html')
 
 @app.route('/moodle/upload')
 def Upload():

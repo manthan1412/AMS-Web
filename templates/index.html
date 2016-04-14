@@ -6,9 +6,10 @@
 	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='CSS/ams.css')}}">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet' type='text/css'>
 	<script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='JS/js-cookie.js')}}"></script>
 	<script type="text/javascript" src="{{url_for('static',filename='JS/ams.js')}}"></script>
 	<script type="text/javascript">
-		var type = "{{login}}";
+		var role = "{{login}}";
 	</script>
 	<style type="text/css">
 
@@ -28,7 +29,6 @@
 <body>
 	
 	<div id="image-container"></div>
-	</div>
 		<header>
 			<div id="menu">
 				<img src="{{url_for('static',filename='Images/three-1.png')}}" width="24" height="24">
@@ -64,11 +64,13 @@
 					
 					<input type="text" id="username" name="username" placeholder="USERNAME" class="padding" />
 					<img src="{{url_for('static',filename='Images/user.png')}}" class="image">
+					<span class="error" id="invalid-username">Invalid username</span>
 				</p>
 
 				<p id="field" class="border">
 					<input type="password" id="password" name="password" value="password" class="padding" />
 					<img src="{{url_for('static',filename='Images/security.png')}}" class="image">
+					<span class="error" id="wrong-password">Wrong password</span>
 				</p>
 
 				<p id="field">
@@ -76,9 +78,9 @@
 					<input type="submit" value="LOGIN" class="button login" id="login">
 				</p>
 
-				<p id="field"></p>
+				<!-- <p id="field"></p> -->
 			</div>
 		</div>
-		<div>Icons made by <a href="http://www.flaticon.com/authors/vectors-market" title="Vectors Market">Vectors Market</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+		<!-- <div>Icons made by <a href="http://www.flaticon.com/authors/vectors-market" title="Vectors Market">Vectors Market</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
 </body>
 </html>
