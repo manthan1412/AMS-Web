@@ -33,40 +33,57 @@ $(function () {
 	});
 	// }
 
-	$('#login').on("click", function (event) {
-		event.preventDefault();
+	$('#login').on("click", function () {
+		// event.preventDefault();
 		$('#invalid-username').removeClass("show-error");
 		$('#wrong-password').removeClass("show-error");
+		$('#null-username').removeClass("show-error");
+		$('#null-password').removeClass("show-error");
 		var username = $('#username').val();
 		var password = $('#password').val();
-		// var pwd = $.md5(password, 'ams3393');
-		$.ajax({
-			"async" : true,
-			"crossDomain" : true,
-			"url" : root + "/login/" + role.toLowerCase(),
-			"method" : "GET",
-			headers: {
-			    "Authorization": "Basic " + btoa(username + ":" + password)
-			},
-			"processData": false,
-			"data": "",
-			"timeout" : 8000,
-			success: function (data, textStatus, xhr) {
-				if(data.status == 200){
-					Cookies.set("username", username, {expires : 7});
-					Cookies.set("role", role.toLowerCase(), {expires : 7});
-					Cookies.set("password",password , {expires: 7});
-					Cookies.set("id",data.id, {expires: 7});
-					window.location.replace("/setcookie");
+		if(username.length == 0){
+			$('#null-username').addClass("show-error");
+		}
+		else if (password.length == 0) {
+			$('#null-password').addClass("show-error");
+		}
+		else{
+			password = $.md5(password, 'ams3393!$!@yms##(#s28');
+			// console.log(password);
+			$.ajax({
+				"async" : true,
+				"crossDomain" : true,
+				"url" : root + "/login/" + role.toLowerCase(),
+				"method" : "GET",
+				headers: {
+				    "Authorization": "Basic " + btoa(username + ":" + password)
+				},
+				"processData": false,
+				"data": "",
+				"timeout" : 8000,
+				success: function (data, textStatus, xhr) {
+					if(data.status == 200){
+						Cookies.set("username", username, {expires : 7});
+						Cookies.set("role", role.toLowerCase(), {expires : 7});
+						Cookies.set("password",password , {expires: 7});
+						Cookies.set("id",data.id, {expires: 7});
+						window.location.replace("/setcookie");
+					}
+					else if(data.status == 404){
+						if(data.message == "Invalid username")
+							$('#invalid-username').addClass("show-error");
+						else if(data.message == "Wrong password")
+							$('#wrong-password').addClass("show-error");
+					}
 				}
-				else if(data.status == 404){
-					if(data.message == "Invalid username")
-						$('#invalid-username').addClass("show-error");
-					else if(data.message == "Wrong password")
-						$('#wrong-password').addClass("show-error");
-				}
-			}
-		});
+			});
+		}
+	});
+
+	$('#password').on('keydown', function (event) {
+		if(event.which == 13){
+			$('#login').click();
+		}
 	});
 
 	$('#submit').click(function () {
@@ -122,12 +139,6 @@ $(function () {
 			console.log(data);
 			if(data.name == $('#name').val())
 				alert("successfull");
-			// JSON.parse(data, function (k,v) {
-			// 	console.log(k);
-			// 	return v;
-			// });
-		  	
-		  	// console.log(response);
 		});
 
 

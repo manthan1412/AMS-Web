@@ -5,9 +5,11 @@
 	<link rel="icon" href="{{url_for('static',filename='Images/favicon.ico')}}">
 	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='CSS/ams.css')}}">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet' type='text/css'>
-	<script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
+	<!-- <script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script> -->
+	<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="{{url_for('static', filename='JS/js-cookie.js')}}"></script>
 	<script type="text/javascript" src="{{url_for('static',filename='JS/ams.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='JS/jquery.md5.js')}}"></script>
 	<script type="text/javascript">
 		var role = "{{login}}";
 	</script>
@@ -62,15 +64,17 @@
 
 				<p id="field" class="border">
 					
-					<input type="text" id="username" name="username" placeholder="USERNAME" class="padding" />
+					<input type="text" id="username" name="username" placeholder="USERNAME" class="padding" required="required" />
 					<img src="{{url_for('static',filename='Images/user.png')}}" class="image">
 					<span class="error" id="invalid-username">Invalid username</span>
+					<span class="error" id="null-username">Enter username</span>
 				</p>
 
 				<p id="field" class="border">
-					<input type="password" id="password" name="password" value="password" class="padding" />
+					<input type="password" id="password" name="password" value="password" class="padding" required />
 					<img src="{{url_for('static',filename='Images/security.png')}}" class="image">
-					<span class="error" id="wrong-password">Wrong password</span>
+					<span class="error" id="wrong-password">Incorrect password</span>
+					<span class="error" id="null-password">Enter password</span>
 				</p>
 
 				<p id="field">

@@ -58,7 +58,7 @@ def Home():
 def Master():
 	try:
 		if session["role"] == "master":
-			return render_template('dashboard.html', student=False, teacher=False)
+			return render_template('dashboard.html')
 		else:
 			return redirect(url_for('Home'))
 	except:
@@ -96,7 +96,7 @@ def Logout():
 
 @app.route('/contactus')
 def Contactus():
-	pass
+	return render_template('index2.html')
 
 @app.route('/masters')
 def Masters():
@@ -106,7 +106,7 @@ def Masters():
 def Students():
 	try:
 		if session['role'] == 'master':
-			return render_template('dashboard.html', student=True, teacher=False)
+			return render_template('dashboard.html', students=True)
 		else:
 			return redirect(url_for('Home'))
 	except:
@@ -117,7 +117,37 @@ def Students():
 def Teachers():
 	try:
 		if session['role'] == 'master':
-			return render_template('dashboard.html', student=False, teacher=True)
+			return render_template('dashboard.html', teachers=True)
+		else:
+			return redirect(url_for('Home'))
+	except:
+		return redirect(url_for('Home'))
+
+@app.route('/classes')
+def Classes():
+	try:
+		if session['role'] == 'master':
+			return render_template('dashboard.html', classes=True)
+		else:
+			return redirect(url_for('Home'))
+	except:
+		return redirect(url_for('Home'))
+
+@app.route('/subjects')
+def Subjects():
+	try:
+		if session['role'] == 'master':
+			return render_template('dashboard.html', subjects=True)
+		else:
+			return redirect(url_for('Home'))
+	except:
+		return redirect(url_for('Home'))
+
+@app.route('/timetables')
+def Timetables():
+	try:
+		if session['role'] == 'master':
+			return render_template('dashboard.html', timetables=True)
 		else:
 			return redirect(url_for('Home'))
 	except:
@@ -130,37 +160,90 @@ def Profile():
 @app.route('/add/master')
 def AddMasters():
 	pass
+
 @app.route('/add/students')
 def AddStudents():
-	pass
+	try:
+		if session['role'] == 'master':
+			return render_template('dashboard.html', students=True, add=True)
+		else:
+			return redirect(url_for('Home'))
+	except:
+		return redirect(url_for('Home'))
 
 @app.route('/add/teachers')
 def AddTeachers():
-	pass
+	try:
+		if session['role'] == 'master':
+			return render_template('dashboard.html',teachers=True, add=True)
+		else:
+			return redirect(url_for('Home'))
+	except:
+		return redirect(url_for('Home'))
 
 @app.route('/add/classes')
 def AddClasses():
-	pass
+	try:
+		if session['role'] == 'master':
+			return render_template('dashboard.html', classes=True, add=True)
+		else:
+			return redirect(url_for('Home'))
+	except:
+		return redirect(url_for('Home'))
 
 @app.route('/add/subjects')
 def AddSubjects():
-	pass
+	try:
+		if session['role'] == 'master':
+			return render_template('dashboard.html', subjects=True, add=True)
+		else:
+			return redirect(url_for('Home'))
+	except:
+		return redirect(url_for('Home'))
 
 @app.route('/add/timetable')
 def AddTimetable():
-	pass
+	try:
+		if session['role'] == 'master':
+			return render_template('dashboard.html', timetables=True, add=True)
+		else:
+			return redirect(url_for('Home'))
+	except:
+		return redirect(url_for('Home'))
 
 @app.route('/edit/masters')
 def EditMasters():
-	pass
+	try:
+		if session['role'] == "master":
+			return render_template('dashboard.html',masters=True, edit=True)
+		else:
+			return redirect(url_for('Home'))
+	except:
+		return redirect(url_for('Home'))
 
 @app.route('/edit/students')
 def EditStudents():
-	pass
+	try:
+		if session['role'] == "master":
+			return render_template('dashboard.html',students=True, edit=True)
+		elif session['role'] == "student":
+			return render_template('home.html')
+		else:
+			return redirect(url_for('Home'))
+	except:
+		return redirect(url_for('Home'))
 
 @app.route('/edit/teachers')
 def EditTeachers():
-	pass
+	try:
+		if session['role'] == "master":
+			return render_template('dashboard.html',teachers=True, edit=True)
+		elif session['role'] == "teacher":
+			return render_template('home.html')
+		else:
+			return redirect(url_for('Home'))
+	except:
+		return redirect(url_for('Home'))
 
 @app.route('/edit/classes')
 def EditClasses():
@@ -201,7 +284,10 @@ def DeleteTimetable():
 @app.route('/moodle')
 @app.route('/moodle/home')
 def Moodle():
-	return render_template('moodle.html')
+	if 'role' in session:
+		return render_template('moodle.html')
+	else:
+		return redirect(url_for('Home'))
 
 @app.route('/moodle/upload')
 def Upload():

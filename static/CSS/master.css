@@ -48,6 +48,10 @@ a{
 	color: white;
 }
 
+#inline-menu-item{
+    font-size: 0.85em;
+}
+
 #menu-item{
 	line-height: 55px;
 	list-style: none;
@@ -59,10 +63,21 @@ a{
 }
 
 .add-image{
+    background-color: #003c5d;
+    z-index: 50;
     position: fixed;
     bottom: 15px;
+    width: 55px;
+    height: 55px;
+    padding: 6px 19px;
+    font-size: 30px;
     right: 15px;
+    color: white;
     cursor: pointer;
+    border-radius: 50%;
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 1);
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 1);
 }
 
 .add{
@@ -86,12 +101,30 @@ a{
     margin: 0 auto;
 }
 
-table{
+#table-heading{
     position: relative;
     width: 100%;
+    text-align: center;
+    font-size: 2.25em;
+}
+
+#loading{
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hide{
+    display: none;
+}
+
+table{
+    position: relative;
+    /*width: 100%;*/
     margin: 0 auto;
     border-spacing: 0px;
     border-collapse: collapse;
+    font-size: 0.9em;
 }
 
 th ,td{
@@ -112,15 +145,33 @@ th ,td{
 .delete{
     background-color: #cc0000;
     border-color: #cc0000;
+    padding-right: 15px !important;
+    padding-left: 15px !important;
 }
 
-.font{
-    font-size: 0.8em;
+.button-style{
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
+}
+
+#add-table{
+    border: 0px !important;
 }
 
 @media only screen and (min-width: 600px){
-    .add{
-        width: 64px;
-        height: 64px;
+    .add-image{
+        width: 65px;
+        height: 65px;
+        padding: 11px 24px;
+        font-size: 32px;
+        bottom:25px;
+        right: 25px;
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .add-image{
+        right: 30px;
+        bottom: 30px;
     }
 }

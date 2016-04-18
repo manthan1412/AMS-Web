@@ -9,54 +9,158 @@
 	<script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="{{url_for('static', filename='JS/js-cookie.js')}}"></script>
 	<script type="text/javascript" src="{{url_for('static',filename='JS/master.js')}}"></script>
+	<script type="text/javascript">
+		var type=false;
+		{% if students %}
+		type="students";
+		{% elif teachers %}
+		type="teachers";
+		{% elif classes %}
+		type="classes";
+		{% elif subjects %}
+		type="sucjects";
+		{% elif timetables %}
+		type="timetables";
+		{% elif masters %}
+		type="masters";
+		{% endif %}
+	</script>
 </head>
 <body>
 	<header>
-			<div id="menu">
-				<img src="{{url_for('static',filename='Images/three-1.png')}}" width="24" height="24">
+		<div id="menu">
+			<img src="{{url_for('static',filename='Images/three-1.png')}}" width="24" height="24">
+		</div>
+
+		<a href="{{url_for('Home')}}">
+			<div id="logo">
+				<img src="{{url_for('static',filename='Images/logo.png')}}" width="56" height="56"> 
 			</div>
+			<span id="logo_name" >AMS</span>
+		</a>
 
-			<a href="{{url_for('Home')}}">
-				<div id="logo">
-					<img src="{{url_for('static',filename='Images/logo.png')}}" width="56" height="56"> 
-				</div>
-				<span id="logo_name" >AMS</span>
-			</a>
-
-			<ul id="inline-menu">
-				<a href="{{url_for('Teachers')}}"><li id="inline-menu-item">Teachers</li></a>
-				<a href="{{url_for('Students')}}"><li id="inline-menu-item">Students</li></a>
-				<a href="{{url_for('Contactus')}}"><li id="inline-menu-item">Contact us</li></a>
-				<li id="inline-menu-item" class='user'>Settings
-					<ul id="drop-down-menu" class="hide-menu">
-						<a href="{{url_for('Profile')}}"><li id="menu-item">Profile</li></a>
-						<a href="{{url_for('Logout')}}"><li id="menu-item">Logout</li></a>
-					</ul>
-				</li>
-			</ul>
+		<ul id="inline-menu">
+			<a href="{{url_for('Teachers')}}"><li id="inline-menu-item">Teachers</li></a>
+			<a href="{{url_for('Students')}}"><li id="inline-menu-item">Students</li></a>
+			<a href="{{url_for('Classes')}}"><li id="inline-menu-item">Classes</li></a>
+			<a href="{{url_for('Subjects')}}"><li id="inline-menu-item">Subjects</li></a>
+			<li id="inline-menu-item" class='user'>Settings
+				<ul id="drop-down-menu" class="hide-menu">
+					<a href="{{url_for('Profile')}}"><li id="menu-item">Profile</li></a>
+					<a href="{{url_for('Contactus')}}"><li id="menu-item">Contact&nbsp;us</li></a>
+					<a href="{{url_for('Logout')}}"><li id="menu-item">Logout</li></a>
+				</ul>
+			</li>
+		</ul>
 
 		</header>
 
-		<div class="add-image">
-			<!-- <img src="{{url_for('static',filename='Images/add.svg')}}" width="64" height="64" class="circle"> -->
-			<!-- <img src="{{url_for('static',filename='Images/bn.png')}}" width="64" height="64" class="circle"> -->
-			<img src="{{url_for('static',filename='Images/asd.png')}}" width="64" height="64" class="round-image add">
-			<!-- <img src="{{url_for('static',filename='Images/bn.png')}}" class="circle"> -->
-			<!-- <img src="{{url_for('static',filename='Images/vb.png')}}"  class="circle"> -->
+		{% if not add %}
+				{% if not masters %}
+		<div class="add-image">+
 		</div>
+			{% endif %}
+		{% endif %}
 
+		{% if add %}
+			{% if teachers %}
 		<div id="main-container">
 			<div id="data">
-				<table class="table">
+			teacher add
+			</div>
+		</div>
+			{% elif students %}
+		<div id="main-container">
+			<div id="data">
+				<table >
+					<tr>
+						<th id="add-table">Userame</th>
+						<th id="add-table">Name</th>
+						<th id="add-table">Lastname</th>
+						<th id="add-table">Password</th>
+						<th id="add-table">Email</th>
+						<th id="add-table">Image</th>
+					</tr>
+					<tr>
+						<th id="add-table"><input type="text" id="" /></th>
+						<th id="add-table"><input type="text" id="" /></th>
+						<th id="add-table"><input type="text" id="" /></th>
+						<th id="add-table"><input type="password" id="" /></th>
+						<th id="add-table"><input type="text" id="" /></th>
+						<th id="add-table"><input type="file" id="" /></th>
+					</tr>
+				</table>
+			</div>
+		</div>
+			{%endif%}
+		{% elif edit%}
+			{% if students %}
+		<div id="main-container">
+			<div id="data">
+			student edit
+			</div>
+		</div>	
+			{% endif %}
+			{% if teachers %}
+		<div id="main-container">
+			<div id="data">
+			teacher edit
+			</div>
+		</div>
+			{% endif %}
+			{% if master %}
+		<div id="main-container">
+			<div id="data">
+			master edit
+			</div>
+		</div>
+			{% endif %}
+		{% else %}
+			{% if students %}
+		<div id="main-container">
+			<div id="data">
+				<div id="table-heading">
+					Students details	
+				</div>
+				<div id="loading">
+					<img src="{{url_for('static',filename='Images/loading.svg')}}">
+				</div>
+				<table class="table hide">
 					<tr class="head-background">
 						<th>No</th>
 						<th>Username</th>
 						<th>Name</th>
 						<th>Lastname</th>
-						<!-- <th> </th> -->
+						<th>Email</th>
 					</tr>
 				</table>
 			</div>
+			<br/>
 		</div>
+			{% elif teachers %}
+		<div id="main-container">
+			<div id="data">
+				<div id="table-heading">
+					Teachers details	
+				</div>
+				<div id="loading">
+					<img src="{{url_for('static',filename='Images/loading.svg')}}">
+				</div>
+				<table class="table hide">
+					<tr class="head-background">
+						<th>No</th>
+						<th>Username</th>
+						<th>Name</th>
+						<th>Lastname</th>
+						<th>Email</th>
+					</tr>
+				</table>
+				<div>
+					
+				</div>
+			</div>
+		</div>
+			{%endif%}
+		{%endif%}
 </body>
 </html>
