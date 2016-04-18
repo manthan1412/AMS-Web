@@ -63,4 +63,45 @@ $(function () {
 	$('.add-image').on('click',function () {
 		window.location.replace('/add/'+type);
 	});
+
+	var uname = $("#uname").last().val();
+	if(uname.length === 0){
+		// empty uname
+	}
+	else{
+		var name = $("#name").last().val();
+		if(name.length === 0){
+			// empty name
+		}
+		else{
+			var lname = $("#lname").last().val();
+			if(lname.length === 0){
+				// empty lname
+			}
+			else{
+				var pwd = $("#pwd").last().val();
+				var re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$");
+				if(re.test(pwd)){
+					// invalid password
+				}
+				else{
+					var mail = $("#mail").last().val();
+					re = new RegExp('^[A-Z0-9._]+@[A-Z0-9.-]+\.[A-Z]{2,4}$');
+					if(re.test(mail)){
+						// invalid email
+					}
+					else{
+						var image = $("#image").last().val();
+						var ext = image.split('.').pop().toLowerCase();
+						if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+							// invalid extesion
+						}	
+						if(image[0].files[0].size < 524288){
+							// invalid size
+						}
+					}
+				}
+			}	
+		}
+	}
 });
