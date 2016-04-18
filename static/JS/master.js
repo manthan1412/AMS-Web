@@ -13,6 +13,10 @@ $(function () {
 	var mid = Cookies.get('id');
 	// var jsonData = JSON.stringify(data);
 	console.log(mid);	
+	var class_id = [] ;
+	if(class_id == []){
+		console.log('class');
+	}
 
 	if(type){
 		$('#loading').removeClass('hide');

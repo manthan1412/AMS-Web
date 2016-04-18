@@ -16,8 +16,15 @@ $(function (){
 		var jsonData = JSON.stringify(data);
 		console.log(jsonData);
 	});
+
+	var files;
+	$('input[type=file]').on('change', function (event) {
+		files = event.target.files;
+		console.log(files);
+	});
+
 	var root= "https://api.dropboxapi.com/2/files/";
-	$('#added').on('click',function () {
+	$('#added').on('click',function (event) {
 		console.log('clicked');
 
 		var data = new Object();
@@ -163,5 +170,62 @@ $(function (){
 				a[0].click();
 			}
 		});
+
+		//upload
+		data.path="/test.txt";
+		data.mode="add";
+		data.autorename=true;
+		data.mute=false;
+		jsonData = JSON.stringify(data);
+		console.log(jsonData);
+		root ="https://content.dropboxapi.com/2/files/";
+		// $.ajax({
+		// 	method: "POST",
+		// 	crossDomain: true,
+		// 	url: root + "upload",
+		// 	headers: {
+		// 		"Authorization": "Bearer x89U71X7LXAAAAAAAAAAKNcuxbCT-2ZJwQo5p7FcD3E1QaRLiGSwhqzZuhZK8W3R",
+		// 		"Dropbox-API-Arg" : jsonData,
+		// 		"Content-Type": "application/octet-stream"
+		// 	},
+		// 	data: jsonData,
+		// 	success: function (data, textStatus, xhr) {
+		// 		console.log(data);
+		// 		// $('<img />').attr({src: data.link}).appendTo($('body'));
+		// 		var a=$('<a></a>').attr({id: "image", href: data.link, download: "image" });
+		// 		a[0].click();
+		// 	}
+		// });
+		// var d = new FormData($('form')[0]);
+		// console.log(d);
+		// var files;
+		// files = event.target.files;
+		console.log(files);
+		// event.stopPropagation(); // Stop stuff happening
+    	event.preventDefault();
+		var d = new FormData();
+		$.each(files, function (key, value) {
+			d.append(key, value);
+		})
+		console.log(d);
+		console.log(jsonData);
+		$.ajax({
+			method: "POST",
+			crossDomain: true,
+			url: root + "upload",
+			headers: {
+				"Authorization": "Bearer x89U71X7LXAAAAAAAAAAKNcuxbCT-2ZJwQo5p7FcD3E1QaRLiGSwhqzZuhZK8W3R",
+				"Dropbox-API-Arg" : jsonData,
+				"Content-Type": "application/octet-stream"
+			},
+			data: d,
+			success: function (data, textStatus, xhr) {
+				console.log(data);
+				// $('<img />').attr({src: data.link}).appendTo($('body'));
+				// var a=$('<a></a>').attr({id: "image", href: data.link, download: "image" });
+				// a[0].click();
+			}
+		});
+
 	});
 });
